@@ -29,14 +29,14 @@
 import UIKit
 
 final class CardView: UIView {
-  private let padding: CGFloat = 26
+  private let padding: CGFloat = 16
   
   private lazy var imageView: UIImageView = {
     let image = UIImageView()
     image.contentMode = .scaleAspectFit
     image.clipsToBounds = true
     image.backgroundColor = .white
-    image.layer.cornerRadius = 10
+    image.layer.cornerRadius = 8
     image.translatesAutoresizingMaskIntoConstraints = false
     return image
   }()
@@ -57,7 +57,7 @@ final class CardView: UIView {
   
   public convenience init(with type: CardType) {
     self.init(frame: .zero)
-    configureCard(with: type)
+   configureCard(with: type)
   }
   
   required init?(coder: NSCoder) {
@@ -65,11 +65,39 @@ final class CardView: UIView {
   }
   
   private func setupViews() {
-    //add code here to add views to hierarchy
+   addSubviews(imageView, textLabel)
   }
   
   private func setupConstraints() {
-    //add code here to layout views
+    //1
+    NSLayoutConstraint.activate([
+      imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
+      imageView.leadingAnchor.constraint(
+        equalTo: self.leadingAnchor,
+        constant: padding),
+      imageView.trailingAnchor.constraint(
+        equalTo: self.trailingAnchor,
+        constant: -padding)
+    ])
+
+
+    NSLayoutConstraint.activate([
+      //2
+      textLabel.topAnchor.constraint(
+        equalTo: imageView.bottomAnchor,
+        constant: padding),
+      //3
+      textLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+      textLabel.trailingAnchor.constraint(
+        equalTo: self.trailingAnchor,
+        constant: -padding),
+      textLabel.bottomAnchor.constraint(
+        equalTo: self.bottomAnchor,
+        constant: -padding)
+    ])
+    
+    textLabel.setContentHuggingPriority(.defaultLow + 1, for: .vertical)
+    textLabel.setContentCompressionResistancePriority(.defaultHigh + 1, for: .vertical)
   }
   
 }

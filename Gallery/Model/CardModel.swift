@@ -37,7 +37,7 @@ enum CardType: String {
   func getColor() -> UIColor {
     switch self {
     case .skeleton:
-      return .green
+      return .cyan
     
     case .monkey:
       return .orange
