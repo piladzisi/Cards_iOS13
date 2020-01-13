@@ -57,7 +57,8 @@ class GalleryController: UIViewController {
     super.viewDidLoad()
     setupViews()
     setupConstraints()
-    view.backgroundColor = .white
+    view.backgroundColor = .blue
+ 
   }
   
   // MARK: - Setting Views

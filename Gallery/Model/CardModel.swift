@@ -54,18 +54,19 @@ enum CardType: String {
 class CardModel {
   var imageName: String
   var characterName: String
-  var backgroundColor: UIColor
+  //var backgroundColor: UIColor
   
-  init(imageName: String, characterName: String, backgroundColor: UIColor) {
+  init(imageName: String, characterName: String) {
     self.imageName = imageName
     self.characterName = characterName
-    self.backgroundColor = backgroundColor
+   // self.backgroundColor = backgroundColor
   }
   
   public static func getCardDetails(for type: CardType) -> CardModel {
     return CardModel(
       imageName: type.rawValue,
-      characterName: type.rawValue.capitalized,
-      backgroundColor: type.getColor())
+      characterName: type.rawValue.capitalized
+     // backgroundColor: type.getColor()
+    )
   }
 }

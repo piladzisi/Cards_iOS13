@@ -29,16 +29,22 @@
 import UIKit
 
 final class CardView: UIView {
-  private let padding: CGFloat = 16
+  private let padding: CGFloat = 8
   
   private lazy var imageView: UIImageView = {
     let image = UIImageView()
     image.contentMode = .scaleAspectFit
     image.clipsToBounds = true
     image.backgroundColor = .white
-    image.layer.cornerRadius = 8
+    image.layer.cornerRadius = 15
     image.translatesAutoresizingMaskIntoConstraints = false
-    return image
+    image.layer.shadowColor = UIColor.black.cgColor
+      image.layer.shadowPath = UIBezierPath(rect: image.bounds).cgPath
+      image.layer.shadowOpacity = 1
+      image.layer.shadowRadius = 10
+    image.layer.shadowOffset = .zero
+    image.layer.shouldRasterize = true
+      return image
   }()
   
   private lazy var textLabel: UILabel = {
@@ -65,6 +71,7 @@ final class CardView: UIView {
   }
   
   private func setupViews() {
+    
    addSubviews(imageView, textLabel)
   }
   
@@ -78,6 +85,7 @@ final class CardView: UIView {
       imageView.trailingAnchor.constraint(
         equalTo: self.trailingAnchor,
         constant: -padding)
+      
     ])
 
 
@@ -108,6 +116,7 @@ extension CardView {
     let model = CardModel.getCardDetails(for: type)
     imageView.image = UIImage(named: model.imageName)
     textLabel.text = model.characterName
-    backgroundColor = model.backgroundColor
+   //backgroundColor = model.backgroundColor
+    
   }
 }
